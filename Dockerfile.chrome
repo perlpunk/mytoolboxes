@@ -1,0 +1,11 @@
+FROM registry.opensuse.org/opensuse/toolbox:latest
+
+RUN zypper ref && zypper -n install wget
+
+RUN wget https://dl.google.com/linux/linux_signing_key.pub && \
+    sudo rpm --import linux_signing_key.pub && \
+    sudo zypper ar http://dl.google.com/linux/chrome/rpm/stable/x86_64 Google-Chrome && \
+    sudo zypper ref -f && \
+    true
+
+RUN sudo zypper -n install google-chrome-stable google-opensans-fonts google-noto-coloremoji-fonts pulseaudio-utils
