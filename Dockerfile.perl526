@@ -1,0 +1,16 @@
+FROM registry.opensuse.org/opensuse/leap:15.4
+
+RUN zypper -n ref && zypper -n install \
+        perl-App-cpanminus \
+    && true
+
+RUN zypper -n install vi git wget curl ack zsh tree perl-doc jq
+
+RUN zypper -n install make gcc libopenssl-devel
+
+RUN cpanm -n Dist::Zilla
+
+RUN cpanm -n Dist::Zilla::Plugin::OverridePkgVersion Dist::Zilla::Plugin::MetaProvides::Package \
+    Dist::Zilla::Plugin::Test::Compile Dist::Zilla::Plugin::CopyFilesFromBuild
+
+RUN zypper -n install aspell tar gzip

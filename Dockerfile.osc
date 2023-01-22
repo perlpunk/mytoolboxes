@@ -1,0 +1,33 @@
+FROM registry.opensuse.org/opensuse/toolbox:latest
+
+RUN zypper -n ar -G http://download.suse.de/ibs/QA:/Maintenance/openSUSE_Tumbleweed/QA:Maintenance.repo
+
+RUN zypper ref && zypper -n install osc
+
+# cpanspec
+RUN zypper ref && zypper -n install \
+    'perl(Algorithm::Diff)' \
+    'perl(Archive::Zip)' \
+    'perl(Class::Accessor::Chained)' \
+    'perl(File::ShareDir::Install)' \
+    'perl(LWP::UserAgent)' \
+    'perl(Module::Build)' \
+    'perl(Module::Build::Tiny)' \
+    'perl(Parse::CPAN::Packages)' \
+    'perl(Perl::PrereqScanner)' \
+    'perl(Pod::POM)' \
+    'perl(Text::Autoformat)' \
+    'perl(YAML::XS)' \
+    obs-service-format_spec_file \
+    obs-service-obs_scm \
+    obs-service-set_version \
+    obs-service-tar \
+    obs-service-recompress \
+    obs-service-download_files \
+  && true
+
+RUN zypper ref && zypper -n install zsh git ack
+
+RUN zypper -n install osc-plugin-qam qam-metadata-openqabot qam-metadata mtui
+
+
