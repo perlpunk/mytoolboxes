@@ -19,6 +19,11 @@ RUN zypper ref && zypper -n install \
     'perl(Text::Autoformat)' \
     'perl(YAML::XS)' \
     obs-service-format_spec_file \
+    obs-service-obs_scm \
+    obs-service-set_version \
+    obs-service-tar \
+    obs-service-recompress \
+    obs-service-download_files \
   && true
 
 RUN zypper ref && zypper -n install zsh git
