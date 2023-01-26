@@ -8,5 +8,5 @@ RUN zypper -n ref && zypper -n install git vi \
         perl-Text-Markdown \
     && true
 
-RUN zypper -n install ack zsh
+RUN zypper -n install ack zsh tmux tmate
 
