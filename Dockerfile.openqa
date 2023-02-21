@@ -6,7 +6,9 @@ RUN zypper ar -G https://download.opensuse.org/repositories/devel:/openQA/15.4 d
 RUN zypper -n ref && zypper -n install git vi \
         os-autoinst-devel openQA-devel \
         perl-Text-Markdown \
+        python3-pytest \
+        python3-virtualenv \
     && true
 
-RUN zypper -n install ack zsh tmux tmate
+RUN zypper -n install wget curl ack zsh tmux tmate
 
