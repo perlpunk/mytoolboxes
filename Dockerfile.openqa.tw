@@ -1,0 +1,14 @@
+FROM registry.opensuse.org/opensuse/tumbleweed:latest
+
+RUN zypper ar -G https://download.opensuse.org/repositories/devel:/openQA/openSUSE_Tumbleweed devel-openqa && \
+    true
+
+RUN zypper -n ref && zypper -n install git \
+        os-autoinst-devel openQA-devel \
+        perl-Text-Markdown \
+        python3-pytest \
+        python3-virtualenv \
+    && true
+
+RUN zypper -n install vi git wget curl ack zsh tmux tmate tree perl-doc jq
+
