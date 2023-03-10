@@ -5,6 +5,7 @@ RUN zypper ar -G https://download.opensuse.org/repositories/devel:/openQA/openSU
 
 RUN zypper -n ref && zypper -n install git \
         os-autoinst-devel openQA-devel \
+        expect \
         perl-Text-Markdown \
         python3-pytest \
         python3-virtualenv \
