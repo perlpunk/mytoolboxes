@@ -18,6 +18,7 @@ RUN zypper ref && zypper -n install \
     'perl(Pod::POM)' \
     'perl(Text::Autoformat)' \
     'perl(YAML::XS)' \
+    perl-ExtUtils-PkgConfig \
     obs-service-format_spec_file \
     obs-service-obs_scm \
     obs-service-set_version \
