@@ -27,7 +27,7 @@ RUN zypper ref && zypper -n install \
     obs-service-download_files \
   && true
 
-RUN zypper ref && zypper -n install zsh git ack
+RUN zypper ref && zypper -n install zsh git ack python311-yq
 
 RUN zypper -n install osc-plugin-qam qam-metadata-openqabot qam-metadata mtui
 

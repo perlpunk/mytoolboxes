@@ -1,7 +1,8 @@
 FROM registry.opensuse.org/opensuse/leap:15.4
 
 RUN zypper ar -G https://download.opensuse.org/repositories/devel:/openQA/15.4 devel-openqa && \
-    zypper ar -G https://download.opensuse.org/repositories/devel:/openQA:/Leap:/15.4/15.4/ devel-openqa-leap
+    zypper ar -G https://download.opensuse.org/repositories/devel:/openQA:/Leap:/15.4/15.4/ devel-openqa-leap && \
+    zypper ar -G http://download.suse.de/ibs/SUSE:/CA/openSUSE_Leap_15.4/SUSE:CA.repo
 
 RUN zypper -n ref && zypper -n install \
         os-autoinst-devel openQA-devel \
@@ -10,6 +11,7 @@ RUN zypper -n ref && zypper -n install \
         python3-pytest \
         python3-virtualenv \
         nodejs npm \
+        ca-certificates-suse \
     && true
 
 RUN zypper -n install vi git wget curl ack zsh tmux tmate tree perl-doc jq
