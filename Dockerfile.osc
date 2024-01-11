@@ -25,6 +25,8 @@ RUN zypper ref && zypper -n install \
     obs-service-tar \
     obs-service-recompress \
     obs-service-download_files \
+    openssh-clients \
+    obs-service-tar_scm \
   && true
 
 RUN zypper ref && zypper -n install zsh git ack python311-yq

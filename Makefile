@@ -11,3 +11,9 @@ my/oscqam:
 
 run-openqadev:
 	toolbox -u -i tools/openqadev -P -t openqadev
+
+my/perldev:
+	podman build -t my/perldev -f Dockerfile.perldev .
+
+run-perldev:
+	toolbox -u -i my/perldev -P -t perldev

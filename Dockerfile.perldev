@@ -1,4 +1,4 @@
-FROM registry.opensuse.org/opensuse/leap:15.4
+FROM registry.opensuse.org/opensuse/leap:15.5
 
 RUN zypper -n ref && zypper -n install \
         perl-App-cpanminus \
@@ -6,7 +6,7 @@ RUN zypper -n ref && zypper -n install \
 
 RUN zypper -n install vi git wget curl ack zsh tree perl-doc jq
 
-RUN zypper -n install make gcc libopenssl-devel
+RUN zypper -n install make gcc libopenssl-devel openssh-clients
 
 RUN cpanm -n Dist::Zilla
 
