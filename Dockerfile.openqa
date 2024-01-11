@@ -13,8 +13,8 @@ RUN zypper -n ref && zypper -n install \
         nodejs npm \
         ca-certificates-suse \
         openssh-clients \
-        perl-YAML-Tidy \
     && true
+#        perl-YAML-Tidy \
 
 RUN zypper -n install vi git wget curl ack zsh tmux tmate tree perl-doc jq
 
