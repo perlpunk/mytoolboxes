@@ -1,0 +1,5 @@
+FROM registry.opensuse.org/opensuse/toolbox:latest
+
+RUN zypper ref && zypper -n install git hugo zsh openssh-clients wget curl ack tree jq
+
+

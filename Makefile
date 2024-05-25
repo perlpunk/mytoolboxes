@@ -17,3 +17,6 @@ my/perldev:
 
 run-perldev:
 	toolbox -u -i my/perldev -P -t perldev
+
+my/blog:
+	podman build -t my/blog -f Dockerfile.blog .
