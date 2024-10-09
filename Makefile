@@ -9,13 +9,13 @@ my/chrome:
 my/oscqam:
 	podman build -t oscqam -f Dockerfile.osc .
 
-run-openqadev:
+run-openqadev: tools/openqadev
 	toolbox -u -i tools/openqadev -P -t openqadev
 
 my/perldev:
 	podman build -t my/perldev -f Dockerfile.perldev .
 
-run-perldev:
+run-perldev: my/perldev
 	toolbox -u -i my/perldev -P -t perldev
 
 my/blog:
