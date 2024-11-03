@@ -1,4 +1,5 @@
-FROM registry.opensuse.org/opensuse/tumbleweed:latest
+#FROM registry.opensuse.org/opensuse/tumbleweed:latest
+FROM registry.opensuse.org/opensuse/toolbox:latest
 
 RUN zypper ar -G https://download.opensuse.org/repositories/devel:/openQA/openSUSE_Tumbleweed devel-openqa && \
     true
@@ -15,4 +16,8 @@ RUN zypper -n ref && zypper -n install git \
     && true
 
 RUN zypper -n install vi git wget curl ack zsh tmux tmate tree perl-doc jq
+RUN zypper ar -G https://download.opensuse.org/repositories/SUSE:/CA/15.6/SUSE:CA.repo
+RUN zypper -n install ca-certificates-suse
+#RUN zypper addrepo -G https://download.opensuse.org/repositories/devel:languages:perl/openSUSE_Tumbleweed/devel:languages:perl.repo
+#RUN zypper ref && zypper -n install perl-Inline-Lua
 

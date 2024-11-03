@@ -1,8 +1,8 @@
-FROM registry.opensuse.org/opensuse/leap:15.5
+FROM registry.opensuse.org/opensuse/leap:15.6
 
-RUN zypper ar -G https://download.opensuse.org/repositories/devel:/openQA/15.5 devel-openqa && \
-    zypper ar -G https://download.opensuse.org/repositories/devel:/openQA:/Leap:/15.5/15.5/ devel-openqa-leap && \
-    zypper ar -G http://download.suse.de/ibs/SUSE:/CA/openSUSE_Leap_15.5/SUSE:CA.repo
+RUN zypper ar -G https://download.opensuse.org/repositories/devel:/openQA/15.6 devel-openqa && \
+    zypper ar -G https://download.opensuse.org/repositories/devel:/openQA:/Leap:/15.6/15.6/ devel-openqa-leap && \
+    true
 
 RUN zypper -n ref && zypper -n install \
         os-autoinst-devel openQA-devel \
@@ -11,10 +11,15 @@ RUN zypper -n ref && zypper -n install \
         python3-pytest \
         python3-virtualenv \
         nodejs npm \
-        ca-certificates-suse \
         openssh-clients \
     && true
-#        perl-YAML-Tidy \
 
 RUN zypper -n install vi git wget curl ack zsh tmux tmate tree perl-doc jq
+RUN zypper -n install html-xml-utils
+RUN zypper -n install bash-completion
+RUN zypper -n install perl-YAML-Tidy
+RUN zypper ar -G https://download.opensuse.org/repositories/SUSE:/CA/openSUSE_Tumbleweed/SUSE:CA.repo
+RUN zypper -n install ca-certificates-suse
+#RUN zypper addrepo -G https://download.opensuse.org/repositories/devel:languages:perl/openSUSE_Tumbleweed/devel:languages:perl.repo
+#RUN zypper ref && zypper -n install perl-Inline-Lua
 
