@@ -1,11 +1,17 @@
+
+# Run postgres db for openQA
+podman run --name db -d -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=opensuse docker.io/library/postgres:17
+
+
+# Old: Running a podman pod with pgadmin
 podman pod create --name postgre-sql -p 9876:80
 podman pod stats
 podman pod ps -a
-podman pull docker.io/library/postgres:15
+podman pull docker.io/library/postgres:17
 podman images
 podman run --pod postgre-sql -e 'PGADMIN_DEFAULT_EMAIL=openqa@example.com' -e 'PGADMIN_DEFAULT_PASSWORD=opensuse'  --name pgadmin -d docker.io/dpage/pgadmin4:latest
 podman logs pgadmin
 podman ps -a
-podman run --name db --pod=postgre-sql -d \\n  -e POSTGRES_USER=admin \\n  -e POSTGRES_PASSWORD=opensuse \\n  docker.io/library/postgres:15
+podman run --name db --pod=postgre-sql -d -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=opensuse docker.io/library/postgres:17
 podman pod ps
 podman pod stats postgre-sql

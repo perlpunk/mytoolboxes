@@ -1,23 +1,36 @@
-#FROM registry.opensuse.org/opensuse/tumbleweed:latest
 FROM registry.opensuse.org/opensuse/toolbox:latest
 
-RUN zypper ar -G https://download.opensuse.org/repositories/devel:/openQA/openSUSE_Tumbleweed devel-openqa && \
-    true
+RUN zypper ar -G https://download.opensuse.org/repositories/devel:/openQA/openSUSE_Tumbleweed devel-openqa \
+        && zypper ar -G https://download.opensuse.org/repositories/SUSE:/CA/15.6/SUSE:CA.repo \
+    && true
 
-RUN zypper -n ref && zypper -n install git \
+
+RUN zypper -n ref
+
+RUN zypper -n install ca-certificates-suse
+
+# openqa
+RUN zypper -n ref && zypper -n install \
+        git \
         os-autoinst-devel openQA-devel \
         expect \
         perl-Text-Markdown \
-        python3-pytest \
-        python3-virtualenv \
         nodejs npm \
         openssh-clients \
-        perl-YAML-Tidy \
     && true
 
-RUN zypper -n install vi git wget curl ack zsh tmux tmate tree perl-doc jq
-RUN zypper ar -G https://download.opensuse.org/repositories/SUSE:/CA/15.6/SUSE:CA.repo
-RUN zypper -n install ca-certificates-suse
+# scripts
+RUN zypper -n install \
+        python3-pytest \
+        python3-virtualenv \
+        html-xml-utils \
+    && true
+
+# various tools
+RUN zypper -n install vi wget curl ack zsh tmux tmate tree perl-doc jq
+RUN zypper -n install bash-completion
+RUN zypper -n install perl-YAML-Tidy
+
 #RUN zypper addrepo -G https://download.opensuse.org/repositories/devel:languages:perl/openSUSE_Tumbleweed/devel:languages:perl.repo
 #RUN zypper ref && zypper -n install perl-Inline-Lua
 
