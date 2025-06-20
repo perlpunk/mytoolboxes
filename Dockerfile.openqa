@@ -21,9 +21,10 @@ RUN zypper -n ref && zypper -n install \
 
 # scripts
 RUN zypper -n install \
+        os-autoinst-scripts-deps \
+        os-autoinst-scripts-deps-devel \
         python3-pytest \
         python3-virtualenv \
-        html-xml-utils \
     && true
 
 # various tools
