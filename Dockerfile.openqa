@@ -2,20 +2,17 @@ FROM registry.opensuse.org/opensuse/leap:15.6
 
 RUN zypper ar -G https://download.opensuse.org/repositories/devel:/openQA/15.6 devel-openqa \
         && zypper ar -G https://download.opensuse.org/repositories/devel:/openQA:/Leap:/15.6/15.6/ devel-openqa-leap \
-        && zypper ar -G https://download.opensuse.org/repositories/SUSE:/CA/openSUSE_Tumbleweed/SUSE:CA.repo \
+        && zypper ar -G https://download.opensuse.org/repositories/SUSE:/CA/15.6/SUSE:CA.repo \
+        && zypper -n ref \
     && true
-
-RUN zypper -n ref
 
 RUN zypper -n install ca-certificates-suse
 
 # openqa
 RUN zypper -n ref && zypper -n install \
-        git \
         os-autoinst-devel openQA-devel \
         expect \
-        perl-Text-Markdown \
-        nodejs npm \
+        nodejs \
         openssh-clients \
     && true
 
@@ -27,11 +24,11 @@ RUN zypper -n install \
         python3-virtualenv \
     && true
 
-# various tools
-RUN zypper -n install vi wget curl ack zsh tmux tmate tree perl-doc jq
-RUN zypper -n install bash-completion
-RUN zypper -n install perl-YAML-Tidy
-
-#RUN zypper addrepo -G https://download.opensuse.org/repositories/devel:languages:perl/openSUSE_Tumbleweed/devel:languages:perl.repo
-#RUN zypper ref && zypper -n install perl-Inline-Lua
+# Run custom scripts
+# Put your scripts under scripts. Filename should start with custom.sh
+# to be ignored by git
+RUN mkdir /tmp/userscripts
+COPY etc/runuserscripts.sh /tmp/
+COPY scripts/*.sh /tmp/userscripts
+RUN /tmp/runuserscripts.sh
 
