@@ -1,4 +1,5 @@
-FROM registry.opensuse.org/opensuse/toolbox:latest
+FROM registry.opensuse.org/opensuse/tumbleweed:latest
+#FROM registry.opensuse.org/opensuse/toolbox:latest
 
 RUN zypper -n ar -G http://download.suse.de/ibs/QA:/Maintenance/openSUSE_Tumbleweed/QA:Maintenance.repo
 
@@ -29,7 +30,10 @@ RUN zypper ref && zypper -n install \
     obs-service-tar_scm \
   && true
 
-RUN zypper ref && zypper -n install zsh git ack python311-yq
+RUN zypper -n rm busybox-less
+RUN zypper -n install diffutils less
+
+RUN zypper ref && zypper -n install zsh git ack python311-yq vim
 
 RUN zypper -n install osc-plugin-qam qam-metadata-openqabot qam-metadata mtui
 

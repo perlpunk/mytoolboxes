@@ -24,6 +24,8 @@ RUN zypper -n install \
         python3-virtualenv \
     && true
 
+RUN zypper -n rm busybox-diffutils busybox-less
+RUN zypper -n install diffutils less
 # Run custom scripts
 # Put your scripts under scripts. Filename should start with custom.sh
 # to be ignored by git

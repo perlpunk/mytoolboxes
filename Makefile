@@ -7,7 +7,7 @@ my/chrome:
 	podman build -t chrome -f Dockerfile.chrome .
 
 my/oscqam:
-	podman build -t oscqam -f Dockerfile.osc .
+	podman build --network=host -t oscqam -f Dockerfile.osc .
 
 run-openqadev: tools/openqadev
 	toolbox -u -i tools/openqadev -P -t openqadev
